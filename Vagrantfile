@@ -54,6 +54,8 @@ Vagrant.configure(2) do |config|
     vb.memory = "1024"
     # Enable the shared clipboard:
     vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
+    vm.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'cdrom']
+
   end
   #
   # View the documentation for the provider you are using for more
@@ -74,9 +76,9 @@ Vagrant.configure(2) do |config|
     s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
   end
   config.vm.provision :shell, :path => "cookbook/copy-user-provision.sh"
-  config.vm.provision :shell, :path => "cookbook/select-mirror.sh"
+#  config.vm.provision :shell, :path => "cookbook/select-mirror.sh"
   config.vm.provision :shell, :path => "cookbook/gui.sh"
-  config.vm.provision :shell, :path => "cookbook/vbox-guest-additions.sh"
+#  config.vm.provision :shell, :path => "cookbook/vbox-guest-additions.sh"
   config.vm.provision :shell, :path => "cookbook/machinekit-package.sh"
   config.vm.provision :shell, :path => "cookbook/startx.sh"
   config.vm.provision :shell, :path => "cookbook/qt-base.sh"

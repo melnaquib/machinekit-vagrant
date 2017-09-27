@@ -45,7 +45,7 @@ fi
 
 if [ $QT_INSTALL -eq 1 ]; then
     echo "Downloading Qt Open-Source installer"
-    wget http://download.qt.io/official_releases/qt/$QT_BASE_VERSION/$QT_VERSION/qt-opensource-linux-x64-$QT_VERSION.run -nv
+    wget -c http://download.qt.io/official_releases/qt/$QT_BASE_VERSION/$QT_VERSION/qt-opensource-linux-x64-$QT_VERSION.run -nv
     chmod +x qt-opensource-linux-x64-$QT_VERSION.run
     echo -e "Qt install instructions" > qt-install-instructions.txt
     echo -e "-----------------------\n" >> qt-install-instructions.txt
@@ -79,7 +79,7 @@ if [ $QT_INSTALL -eq 1 ]; then
     QTC=~/Qt/Tools/QtCreator/bin/qtcreator
     QTCVERSION=`$QTC -version 2>&1 >/dev/null | grep 'Qt Creator' | grep 'based on' | head -c 16 | tail -c 5`
     QTCVERSION2=`echo $QTCVERSION | head -c 3`
-    wget https://download.qt.io/official_releases/qtcreator/$QTCVERSION2/$QTCVERSION/qt-creator-opensource-src-$QTCVERSION.tar.gz -nv
+    wget -c https://download.qt.io/official_releases/qtcreator/$QTCVERSION2/$QTCVERSION/qt-creator-opensource-src-$QTCVERSION.tar.gz -nv
     tar xfz qt-creator*.tar.gz
     rm qt-creator*.tar.gz
     mv qt-creator*src* qt-creator
@@ -99,7 +99,7 @@ else
     mkdir -p repos
     cd repos
     # download and install QtQuickVcp
-    git clone https://github.com/strahlex/QtQuickVcp
+    git clone https://github.com/melnaquib/QtQuickVcp
     mkdir -p build/QtQuickVcp
 fi
 
